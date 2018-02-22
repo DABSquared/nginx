@@ -2,6 +2,9 @@
 set -e
 
 if [ "$1" = 'nginx' ]; then
+
+    echo "upstream php-upstream { server $UPSTREAM:9000; }" > /etc/nginx/conf.d/upstream.conf
+
 	if [ "$APPFILE" ]; then
        sed -i -e "s/APPFILE/$APPFILE/g" /etc/nginx/conf.d/symfony.conf
     fi
